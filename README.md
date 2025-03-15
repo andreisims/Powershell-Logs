@@ -37,4 +37,15 @@ This brief tutorial demonstrates how attackers misuse PowerShell for reconnaissa
 ![Image](https://github.com/user-attachments/assets/773fe8b5-e68b-4381-a1d8-a91179e7fc9f)
 
 ![Image](https://github.com/user-attachments/assets/3d1e4ba2-d62f-4e98-820f-9fcb1db1e610)
+## Retrieve Logs using PowerShell (Alternative Detection Method)
+<li>Instead of using Event Viewer, use PowerShell to directly extract the event:
+Get-WinEvent -LogName "Microsoft-Windows-PowerShell/Operational" | Where-Object {$_.Id -eq 4104} | Select-Object TimeCreated, Message</li>
+
+![Image](https://github.com/user-attachments/assets/14cc6654-00f3-48de-9a69-09df893a9945)
+<li>This command fetches all script block executions from PowerShell logs and filters them by Event ID 4104. Look for the command Get-LocalUser in the output</li>
+
+## Conclusion
+<li>✅ Successfully simulated an attacker’s reconnaissance technique using PowerShell</li>
+<li>✅ Detected the suspicious command execution via Windows Event Viewer and PowerShell log extraction.</li>
+<li>✅ Understood how SOC analysts can detect and investigate PowerShell-based attacks in real-world scenarios.</li>
 
