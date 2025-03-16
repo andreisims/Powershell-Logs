@@ -31,3 +31,12 @@ Check for Failed Logins
 <li>Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4625} | Select-Object TimeCreated, Message | Format-Table -AutoSize</li> 
 
 ![Image](https://github.com/user-attachments/assets/9d6b4e4a-a109-4ebb-a5cd-c3e23c05ddfd)
+Analyze Login Attempts for Possible Brute-Force Activity To check for multiple failed login attempts from the same user or IP
+<li>Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4625} | Group-Object -Property Message | Sort-Object Count -Descending | Format-Table -AutoSize</li>
+
+![Image](https://github.com/user-attachments/assets/9739ee73-0465-4052-9335-cfdaf12153ff)
+If you see multiple failed attempts for the same account within a short time, it might indicate brute-force activity.
+## Results
+✅ Successfully simulated both successful and failed login attempts.   
+✅ Detected the login attempts using Windows Event Viewer and PowerShell log extraction.    
+✅ Understood how SOC analysts can track brute-force attacks and suspicious login patterns.   
