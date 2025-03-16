@@ -7,3 +7,5 @@ Automation and Efficiency: Automate repetitive tasks such as log analysis, syste
 Incident Response: Quickly collect forensic artifacts, investigate suspicious activities, and respond to incidents.
 Threat Hunting: Identify anomalous behaviors by querying system information and event logs.
 Red Teaming and Blue Teaming: Used by attackers for persistence and lateral movement, making it crucial for defenders to understand its capabilities.
+
+
