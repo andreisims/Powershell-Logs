@@ -9,3 +9,4 @@ Threat Hunting: Identify anomalous behaviors by querying system information and 
 Red Teaming and Blue Teaming: Used by attackers for persistence and lateral movement, making it crucial for defenders to understand its capabilities.
 
 
+
