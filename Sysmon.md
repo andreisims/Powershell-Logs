@@ -5,16 +5,29 @@ Objective
 
 ### **Step 1: Install Sysmon**
 If Sysmon is not installed, download and install it using the following steps:
-1. Download **Sysmon** from Microsoft Sysinternals:  
+i. Download **Sysmon** from Microsoft Sysinternals:  
    [https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon)
 
    ![Image](https://github.com/user-attachments/assets/dee4db3e-f13e-4043-9d27-27b9464d204d)
-3. Extract the Sysmon ZIP file.  
-4. Open a **Command Prompt (Run as Administrator)** and install Sysmon with basic logging:  
+ii. Extract the Sysmon ZIP file.  
+iii. Open a **Command Prompt (Run as Administrator)** and install Sysmon with basic logging:  
    ```powershell
-   sysmon -accepteula -i
+   sysmon64 -accepteula -i
    ```
-5. Verify installation by checking for Sysmon logs in Event Viewer:
+   ![Image](https://github.com/user-attachments/assets/ddbe20e0-0a7c-4f77-8fe0-c632391bea61)
+iv. Verify installation by checking for Sysmon logs in Event Viewer:
    ```
    Applications and Services Logs → Microsoft → Windows → Sysmon → Operational
-    ```
+   ```
+   ![Image](https://github.com/user-attachments/assets/b94b8a9d-ba32-4a7a-a9ee-6f4046e4377a)
+## Attack Simulation & Detection Using Sysmon
+We will now simulate a suspicious process execution and detect it using Sysmon logs.
+### Step 2: Simulate Suspicious Process Execution
+1. Open PowerShell (Run as Administrator).
+2. Execute a command that mimics an attacker running a new process:
+```
+Start-Process notepad.exe
+```
+- This command spawns a new Notepad process, a technique attackers often use to execute malware.
+- Sysmon will log this under Event ID 1 (Process Creation).
+
