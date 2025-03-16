@@ -1,0 +1,18 @@
+Task #2: Identify Failed and Successful Logins
+
+Step 1: Simulate Login Events
+Successful Login:
+Lock your machine (Win + L) and log in with the correct password. This will generate a successful login event (Event ID 4624). 
+Failed login:
+Lock your machine again and try logging in with the wrong password at least three times. This will generate failed login events (Event ID 4625).failed pic
+
+Step 2: Detect Login Events using Windows Event Viewer
+Open Event Viewer (Win + R, type eventvwr.msc, press Enter).
+Click Filter Current Log and enter the following Event IDs: 4624 (4624 pic)→ Successful login, 4625 → Failed login (4625 pic)
+
+Step 3: Retrieve Login Events using PowerShell
+Check for Successful Logins
+Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4624} | Select-Object TimeCreated, Message | Format-Table -AutoSize (4624-2 pic)
+
+Check for Failed Logins
+Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4625} | Select-Object TimeCreated, Message | Format-Table -AutoSize (4625-2 pic)
