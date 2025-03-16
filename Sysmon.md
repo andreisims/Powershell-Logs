@@ -39,3 +39,36 @@ Start-Process notepad.exe
 Applications and Services Logs → Microsoft → Windows → Sysmon → Operational
 ```
 3. Click Filter Current Log and enter Event ID 1 (Process Creation).
+
+4. ![Image](https://github.com/user-attachments/assets/2f42ba6e-f2c1-4de1-bcbc-db4bbc729613)
+### Step 4: Retrieve Sysmon Process Logs Using PowerShell
+Instead of using Event Viewer, use PowerShell to extract process execution logs:
+
+**List All Processes Logged by Sysmon**
+```
+Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" | Where-Object {$_.Id -eq 1} | Select-Object TimeCreated, Message | Format-Table -AutoSize
+```
+
+![Image](https://github.com/user-attachments/assets/68f9c765-975c-4de2-883f-45b48a86c44d)
+- This command retrieves all process execution logs recorded by Sysmon.
+**Filter for Notepad Execution**
+```
+Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" | Where-Object {$_.Message -like "*notepad.exe*"} | Select-Object TimeCreated, Message | Format-Table -AutoSize
+```
+
+![Image](https://github.com/user-attachments/assets/8c6c6163-35fb-4d43-b9cc-024cad3c7ad2)
+- This command extracts only Notepad execution events, mimicking how SOC analysts filter logs for specific process execution.
+
+**Identify Suspicious Parent-Child Processes**
+```
+Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" | Where-Object {$_.Message -like "*powershell.exe*"} | Select-Object TimeCreated, Message | Format-Table -AutoSize
+```
+
+![Image](https://github.com/user-attachments/assets/3aeaf720-f408-409f-8635-1ce47bb3cbd3)
+- If a suspicious PowerShell script spawns a child process, it might indicate malware execution or persistence mechanisms.
+
+## Results
+<li>✅ Successfully installed Sysmon and enabled process tracking.</li>
+<li>✅ Simulated a suspicious process execution using PowerShell.</li>
+<li>✅ Detected and retrieved logs using Windows Event Viewer and PowerShell.</li>
+<li>✅ Understood how SOC analysts can track process execution and identify malicious activity.</li>
