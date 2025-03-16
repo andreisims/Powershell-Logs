@@ -28,6 +28,14 @@ We will now simulate a suspicious process execution and detect it using Sysmon l
 ```
 Start-Process notepad.exe
 ```
+
+![Image](https://github.com/user-attachments/assets/da926cd1-8d16-47fe-a42f-06c039f19a2b)
 - This command spawns a new Notepad process, a technique attackers often use to execute malware.
 - Sysmon will log this under Event ID 1 (Process Creation).
-
+### Step 3: Detect Process Execution Using Windows Event Viewer
+1. Open Event Viewer (Win + R, type eventvwr.msc, press Enter).
+2. Navigate to:
+```
+Applications and Services Logs → Microsoft → Windows → Sysmon → Operational
+```
+3. Click Filter Current Log and enter Event ID 1 (Process Creation).
