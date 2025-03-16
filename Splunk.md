@@ -2,7 +2,7 @@
 ### Objective
 The objective of this task is to help users learn how to search and analyze login attempts using Splunk. We will ingest Windows Security logs into Splunk, identify successful and failed login events, and create a basic search query to extract relevant security insights.
 ## **Preparation**
-### **Step 1: Install Splunk (If Not Already Installed)**
+### **Step 1: Install Splunk**
 1. Download **Splunk Enterprise** from the official website:  
    [https://www.splunk.com/en_us/download.html](https://www.splunk.com/en_us/download.html)
 2. Install Splunk with the default settings.
